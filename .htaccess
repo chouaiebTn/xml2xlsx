@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteRule ^www/ - [L]
+
+	# Static resources if they exist
+	RewriteCond %{DOCUMENT_ROOT}/www/$1 -f
+	RewriteRule (.+) www/$1 [L]
+
+	# Route all other requests
+	RewriteRule (.*) www/index.php?$1 [L,QSA]
+</IfModule>
+
