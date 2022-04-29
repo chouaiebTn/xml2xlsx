@@ -15,7 +15,7 @@ require dirname(__DIR__) . '/config/config.php';
 
 
 //log or show errors
-error_reporting(E_ALL);
+
 set_error_handler('IceCat\Error::handleErrors');
 set_exception_handler('IceCat\Error::handleException');
 

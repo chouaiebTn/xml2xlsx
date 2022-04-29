@@ -9,6 +9,7 @@ Server built   : 2022-03-16T16:52:53<br />
 PHP Version    : 7.4.28<br />
 
 # Requirements 
+PHP version > 7.2.5 
 SimpleXML extension enabled in the php configuration 
 
 # Installation 
@@ -27,7 +28,9 @@ Server version : Apache/2.4.41 (Ubuntu)<br />
 Server built   : 2022-03-16T16:52:53<br />
 PHP Version    : 7.4.28<br />
 
-
+OS             : Windows 10 pro<br />
+Server version : Apache/2.4.51 <br />
+PHP Version    : 7.4.26<br />
 
 # Notes 
 included a folder "xml-samples" that contains several xml files/format to test with.
