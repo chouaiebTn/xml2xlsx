@@ -9,7 +9,7 @@ Server built   : 2022-03-16T16:52:53<br />
 PHP Version    : 7.4.28<br />
 
 # Requirements 
-	1 - PHP version > 7.2.5 2
+	1 - PHP version > 7.2.5
 	2 - SimpleXML extension enabled in the php configuration
 
 
