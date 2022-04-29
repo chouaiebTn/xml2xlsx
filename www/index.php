@@ -25,7 +25,6 @@ $app = new IceCat\Router();
 
 //add routes
 $app->createRoute('', ['controller' => 'Home', 'action' => 'index']);
-$app->createRoute('debug', ['controller' => 'Home', 'action' => 'debug']);
 $app->createRoute('{controller}/{action}');
 
 //dispatch route

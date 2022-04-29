@@ -19,5 +19,7 @@ class Home extends \IceCat\Controller{
         View::renderTemplate('Home/index.html');
     }
 
+
+     
     
 }
