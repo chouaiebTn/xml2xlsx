@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+    <div class="page-wrap d-flex flex-row align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 text-center">
+                <span class="display-4 d-block">Xml To Excel Converter</span>
+                <div class="mb-4 lead">Please Upload your xml file using the form bellow to convert it into an Excel File.</div>
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <form method="post" id="xmlFrmUpload" enctype="multipart/form-data" action="/converter/upload">
+                            <div class="form-group">
+                                <input type="file" name="{{ xml_upload_input_name }}" class="form-control" title="Select XML File" required/>
+                            </div>
+                            <button class="btn btn-primary" type="submit">Convert To Excel</button>
+                        </form>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                              <h4 class="alert-heading">Great !</h4>
+                                  <p>Your XML file was succeessfuly converted to Excel.</p>
+                                  <hr>
+                                  <p class="mb-0">Click <a href="" id="xlsx_download_link" target="_blank">here</a> to download your Excel file</p>
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                        </div>
+
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                              <h4 class="alert-heading">Ooops, something went wrong :(</h4>
+                                  <p class="error-msg"></p>
+                                  
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
