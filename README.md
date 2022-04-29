@@ -13,10 +13,10 @@ SimpleXML extension enabled in the php configuration
 
 # Installation 
 
-	1 - clone or download this repo<br />
-	2 - place the files in the root of your web server or create a Virtual Host<br />
-	3 - run composer install inside the folder or web server <br />
-	4 - make the folders logs,uploads/xml,uploads/xls writable<br />
+	1 - clone or download this repo
+	2 - place the files in the root of your web server or create a Virtual Host
+	3 - run composer install inside the folder or web server 
+	4 - make the folders logs,uploads/xml,uploads/xls writable
 
 
 # Test Environment(s)
