@@ -41,57 +41,58 @@ class Converter extends \IceCat\Controller{
             
 
             //xlsx output filename 
-            $xlsx_file_name = 'result_xlsx_'.uniqid().'.xlsx';
+            $xlsx_file_name = str_replace('{ID}',uniqid(),XLS_FILE_DOWNLO_NAME);
             $xlsx_rows = [];
             $keys = array_keys($dataArray);
             $result->keys = $keys;
             $lines = $dataArray[$keys[0]];
 
             if(count($keys) == 1){
-                foreach($lines as $line){
-                    $column_names = array_keys($line);
-                    $values = array_values($line);
-                   
+                $xlsx_header = [];
+                //extract column names 
+                $first_line = $lines[0];
+                $first_line_keys = array_keys($first_line);
+                $first_line_values = array_values($first_line);
+                $attributes_values = [];
+                $attributes_keys   = [];
+                //if the top node have attribute(s)
+                if($first_line_keys[0] == '@attributes'){
+                    unset($first_line_keys[0]);
+                    $attributes_pairs  = $first_line_values[0];
+                    $attributes_keys   = array_keys($attributes_pairs);
+                }
 
-                    if($column_names[0] == '@attributes'){
-                        //remove attributes if found
-                        $keys = array_keys($values[0]);
-                        if(count($keys) == 1){
-                            $column_names[0] = $keys[0];
-                            $values[0] = $values[0][$keys[0]];
-                        }else{
-                            $column_names[0] = implode(',',$keys);
-                            $values[0] = implode(',',$values);
-                        }
-                       
-                    }
-                    
-                    //add header as first row
-                    if(!count($xlsx_rows)){
-                        array_walk($column_names, function(&$value){
-                          $value = strtoupper($value);
+                $xlsx_header = array_merge($attributes_keys,$first_line_keys);
+                array_walk($xlsx_header, function(&$value){
+                          $value = ucwords(strtolower($value));
                         });
-                        $xlsx_rows[]= $column_names;
-                    }
 
-                    //loop through nodes and add them as rows
+                $xlsx_rows[] = $xlsx_header;
+
+
+                foreach($lines as $line){
                     $row = [];
-                    
-                    foreach($values as $value){
-                        if(is_string($value)){
-                            $row[] = $value;
-                        }elseif(is_array($value)){
-                            if(count($value)){
-                                $row[] = '';//implode(',',$value);
+                    foreach($line as $key => $value){
+
+                        if($key == '@attributes'){
+                            $attributes_values  = array_values($value);
+                             foreach($attributes_values as $value){
+                                $row[] = $value;
+                             }
+                         }else{
+                            if(is_string($value)){
+                                $row[] = $value;
+                            }elseif(is_array($value)){
+                                if(!empty($value)){
+                                    $row[] = implode(',',$value);
+                                }else{
+                                    $row[] = '';
+                                }
                             }else{
                                 $row[] = '';
                             }
-                        }else{
-                            $row[] = '';
-                        }
+                         }
                     }
-                    
-
                     $xlsx_rows[] = $row;
                 }
 
