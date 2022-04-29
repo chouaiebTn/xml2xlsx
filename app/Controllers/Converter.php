@@ -21,6 +21,7 @@ class Converter extends \IceCat\Controller{
 
     protected function process($fileUploadResult){
         
+        //disable libxml errors and allow user to fetch error information as needed
         libxml_use_internal_errors(TRUE);
         $result = new \stdClass();
 
